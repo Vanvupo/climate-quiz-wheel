@@ -1,4 +1,56 @@
 // app.js
+async function apiGetQuestion(level, usedIdsSet) {
+  const exclude = Array.from(usedIdsSet).join(",");
+  const r = await fetch(
+    `/api/question?level=${encodeURIComponent(
+      level
+    )}&exclude=${encodeURIComponent(exclude)}`
+  );
+  return r.json();
+}
+
+async function apiGrade(id, choice) {
+  const r = await fetch(`/api/grade`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, choice }),
+  });
+  return r.json();
+}
+
+async function apiSubmit(payload) {
+  const r = await fetch(`/api/submit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return r.json();
+}
+
+async function apiLeaderboard(mode = "exam", limit = 20) {
+  const r = await fetch(
+    `/api/leaderboard?mode=${encodeURIComponent(mode)}&limit=${limit}`
+  );
+  return r.json();
+}
+let soundOn = true;
+function beep(freq = 440, ms = 120) {
+  if (!soundOn) return;
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const o = ctx.createOscillator();
+  const g = ctx.createGain();
+  o.type = "sine";
+  o.frequency.value = freq;
+  o.connect(g);
+  g.connect(ctx.destination);
+  g.gain.value = 0.06;
+  o.start();
+  setTimeout(() => {
+    o.stop();
+    ctx.close();
+  }, ms);
+}
+
 (() => {
   const $ = (id) => document.getElementById(id);
 
