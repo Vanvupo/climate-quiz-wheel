@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Phòng tránh thiên tai & Biến đổi khí hậu — Vòng quay 180 câu</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🌪️</div>
+        <div>
+          <h1>Phòng tránh thiên tai & Biến đổi khí hậu</h1>
+          <p>
+            Vòng quay câu hỏi 180 câu (Dễ / Trung bình / Khó) — chọn A B C D
+          </p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button
+          id="btnNewSession"
+          class="btn ghost"
+          title="Reset phiên, xáo câu lại"
+        >
+          🔄 Phiên mới
+        </button>
+        <button id="btnToggleTheme" class="btn ghost" title="Đổi giao diện">
+          🌓 Sáng/Tối
+        </button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="grid">
+        <!-- Bài viết -->
+        <article class="card">
+          <h2>📌 Bài viết ngắn (dễ hiểu cho THCS)</h2>
+
+          <div class="article">
+            <h3>1) Thiên tai là gì? Vì sao cần phòng tránh?</h3>
+            <p>
+              Thiên tai là những hiện tượng tự nhiên gây hại như bão, lũ, sạt
+              lở, hạn hán, nắng nóng, dông sét… Phòng tránh giúp giảm thương
+              vong và thiệt hại tài sản.
+            </p>
+
+            <h3>2) Biến đổi khí hậu liên quan gì?</h3>
+            <p>
+              Khi Trái Đất ấm lên, thời tiết cực đoan thường xảy ra hơn: mưa
+              lớn, nắng nóng kéo dài, nước biển dâng. Vì vậy kỹ năng ứng phó và
+              thói quen sống xanh đều quan trọng.
+            </p>
+
+            <h3>3) 5 việc làm “nhỏ mà có võ”</h3>
+            <ul>
+              <li>
+                Biết số điện thoại khẩn cấp địa phương, theo dõi cảnh báo thời
+                tiết.
+              </li>
+              <li>
+                Chuẩn bị “túi khẩn cấp”: đèn pin, pin dự phòng, nước, thuốc, áo
+                mưa…
+              </li>
+              <li>
+                Không trú dưới cây cao khi dông sét, tránh xa dây điện đứt.
+              </li>
+              <li>Tiết kiệm điện, nước; giảm nhựa dùng 1 lần; trồng cây.</li>
+              <li>
+                Biết đường thoát hiểm, điểm tập kết; tập kỹ năng sơ cứu cơ bản.
+              </li>
+            </ul>
+
+            <div class="note">
+              Tip: Chơi vòng quay để ôn nhanh. Mỗi lần quay ra mức độ → hệ thống
+              tự chọn câu đúng mức độ đó.
+            </div>
+          </div>
+        </article>
+
+        <!-- Vòng quay -->
+        <section class="card">
+          <h2>🎡 Vòng quay mức độ</h2>
+
+          <div class="wheelBox">
+            <canvas
+              id="wheel"
+              width="420"
+              height="420"
+              aria-label="Vòng quay"
+            ></canvas>
+            <div class="pointer" aria-hidden="true"></div>
+          </div>
+
+          <div class="wheelControls">
+            <button id="btnSpin" class="btn primary">QUAY</button>
+            <div class="stats">
+              <div class="pill">Dễ: <b id="statEasy">0</b>/60</div>
+              <div class="pill">TB: <b id="statMed">0</b>/60</div>
+              <div class="pill">Khó: <b id="statHard">0</b>/60</div>
+            </div>
+          </div>
+
+          <div class="small">
+            Không trùng câu trong 1 phiên chơi. Hết câu mức độ nào thì tự báo.
+          </div>
+        </section>
+      </section>
+
+      <!-- Quiz -->
+      <section class="card quizCard">
+        <div class="quizHead">
+          <h2>🧠 Câu hỏi</h2>
+          <div class="badges">
+            <span id="badgeLevel" class="badge">—</span>
+            <span id="badgeIndex" class="badge ghost">—</span>
+          </div>
+        </div>
+
+        <div id="quizEmpty" class="empty">Nhấn <b>QUAY</b> để bắt đầu 🎯</div>
+
+        <div id="quizBody" class="quizBody hidden">
+          <div id="questionText" class="qText"></div>
+
+          <div class="options" id="options"></div>
+
+          <div class="quizFooter">
+            <div id="feedback" class="feedback"></div>
+            <div class="quizBtns">
+              <button id="btnNext" class="btn ghost" disabled>
+                Câu tiếp theo
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© Bộ câu hỏi 180 câu — Phòng tránh thiên tai & Biến đổi khí hậu</div>
+      <div class="small">Deploy: GitHub Pages / Koyeb</div>
+    </footer>
+
+    <script src="./questions.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
